@@ -122,7 +122,7 @@ def calculate_statistics():
     for match in tournament_data['matches']:
         if match['result']:
             try:
-                goals_team1, goals_team2 = map(int, match['result'].split('-'))
+                goals_team1, goals_team2 = map(int, match['result'].split(':'))
             except Exception:
                 continue
             team1, team2 = match['players']
@@ -193,13 +193,13 @@ def update_knockout_stage():
         if len(group) >= n: return group[n - 1][0]
         return None
 
-    knockout_matches[0]['teams'] = [[g(A, 2), g(B, 2)], [g(C, 3), g(D, 3)]]  # VF1
-    knockout_matches[1]['teams'] = [[g(C, 2), g(D, 2)], [g(A, 3), g(B, 3)]]  # VF2
+    knockout_matches[0]['teams'] = [[g(A, 2), g(B, 2)], [g(C, 3), g(D, 3)]]
+    knockout_matches[1]['teams'] = [[g(C, 2), g(D, 2)], [g(A, 3), g(B, 3)]]
 
     def get_winner(match):
         if match['result']:
             try:
-                goals1, goals2 = map(int, match['result'].split('-'))
+                goals1, goals2 = map(int, match['result'].split(':'))
             except Exception:
                 return None
             if goals1 > goals2:
@@ -216,7 +216,7 @@ def update_knockout_stage():
     def get_loser(match):
         if match['result']:
             try:
-                goals1, goals2 = map(int, match['result'].split('-'))
+                goals1, goals2 = map(int, match['result'].split(':'))
             except Exception:
                 return None
             if goals1 < goals2:
@@ -232,7 +232,7 @@ def update_knockout_stage():
     def get_semiloser(match):
         if match['result']:
             try:
-                goals1, goals2 = map(int, match['result'].split('-'))
+                goals1, goals2 = map(int, match['result'].split(':'))
             except Exception:
                 return None
             if goals1 < goals2:
@@ -310,7 +310,7 @@ rankings_row_frame.pack(fill="x", padx=10, pady=5)
 rankings_frames = {}
 groups = sorted(set(player['group'] for player in tournament_data['players'].values()))
 for i, group in enumerate(groups):
-    frame = ttk.LabelFrame(rankings_row_frame, text=f"Group {group} Player Rankings")
+    frame = ttk.LabelFrame(rankings_row_frame, text=f"Tabelle Gruppe {group}")
     frame.pack(side='left', padx=10, pady=10, fill='y')
     rankings_frames[group] = frame
 
