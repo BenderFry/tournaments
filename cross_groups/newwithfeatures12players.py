@@ -5,18 +5,30 @@ import json
 # --- Tournament Data ---
 tournament_data = {
     'players': {
-        'A1': {'group': 'A', 'scored_goals': 0, 'conceded_goals': 0, 'points': 0, 'display_name': 'A1'},
-        'A2': {'group': 'A', 'scored_goals': 0, 'conceded_goals': 0, 'points': 0, 'display_name': 'A2'},
-        'A3': {'group': 'A', 'scored_goals': 0, 'conceded_goals': 0, 'points': 0, 'display_name': 'A3'},
-        'B1': {'group': 'B', 'scored_goals': 0, 'conceded_goals': 0, 'points': 0, 'display_name': 'B1'},
-        'B2': {'group': 'B', 'scored_goals': 0, 'conceded_goals': 0, 'points': 0, 'display_name': 'B2'},
-        'B3': {'group': 'B', 'scored_goals': 0, 'conceded_goals': 0, 'points': 0, 'display_name': 'B3'},
-        'C1': {'group': 'C', 'scored_goals': 0, 'conceded_goals': 0, 'points': 0, 'display_name': 'C1'},
-        'C2': {'group': 'C', 'scored_goals': 0, 'conceded_goals': 0, 'points': 0, 'display_name': 'C2'},
-        'C3': {'group': 'C', 'scored_goals': 0, 'conceded_goals': 0, 'points': 0, 'display_name': 'C3'},
-        'D1': {'group': 'D', 'scored_goals': 0, 'conceded_goals': 0, 'points': 0, 'display_name': 'D1'},
-        'D2': {'group': 'D', 'scored_goals': 0, 'conceded_goals': 0, 'points': 0, 'display_name': 'D2'},
-        'D3': {'group': 'D', 'scored_goals': 0, 'conceded_goals': 0, 'points': 0, 'display_name': 'D3'},
+        'A1': {'group': 'A', 'scored_goals': 0, 'conceded_goals': 0, 'points': 0, 'display_name': 'A1', 'wins': 0,
+               'draws': 0, 'losses': 0},
+        'A2': {'group': 'A', 'scored_goals': 0, 'conceded_goals': 0, 'points': 0, 'display_name': 'A2', 'wins': 0,
+               'draws': 0, 'losses': 0},
+        'A3': {'group': 'A', 'scored_goals': 0, 'conceded_goals': 0, 'points': 0, 'display_name': 'A3', 'wins': 0,
+               'draws': 0, 'losses': 0},
+        'B1': {'group': 'B', 'scored_goals': 0, 'conceded_goals': 0, 'points': 0, 'display_name': 'B1', 'wins': 0,
+               'draws': 0, 'losses': 0},
+        'B2': {'group': 'B', 'scored_goals': 0, 'conceded_goals': 0, 'points': 0, 'display_name': 'B2', 'wins': 0,
+               'draws': 0, 'losses': 0},
+        'B3': {'group': 'B', 'scored_goals': 0, 'conceded_goals': 0, 'points': 0, 'display_name': 'B3', 'wins': 0,
+               'draws': 0, 'losses': 0},
+        'C1': {'group': 'C', 'scored_goals': 0, 'conceded_goals': 0, 'points': 0, 'display_name': 'C1', 'wins': 0,
+               'draws': 0, 'losses': 0},
+        'C2': {'group': 'C', 'scored_goals': 0, 'conceded_goals': 0, 'points': 0, 'display_name': 'C2', 'wins': 0,
+               'draws': 0, 'losses': 0},
+        'C3': {'group': 'C', 'scored_goals': 0, 'conceded_goals': 0, 'points': 0, 'display_name': 'C3', 'wins': 0,
+               'draws': 0, 'losses': 0},
+        'D1': {'group': 'D', 'scored_goals': 0, 'conceded_goals': 0, 'points': 0, 'display_name': 'D1', 'wins': 0,
+               'draws': 0, 'losses': 0},
+        'D2': {'group': 'D', 'scored_goals': 0, 'conceded_goals': 0, 'points': 0, 'display_name': 'D2', 'wins': 0,
+               'draws': 0, 'losses': 0},
+        'D3': {'group': 'D', 'scored_goals': 0, 'conceded_goals': 0, 'points': 0, 'display_name': 'D3', 'wins': 0,
+               'draws': 0, 'losses': 0},
     },
     'matches': [
         {'id': 1, 'players': [('A1', 'B1'), ('A2', 'B2')], 'result': None},
@@ -39,7 +51,6 @@ tournament_data = {
         {'id': 18, 'players': [('D2', 'B3'), ('D3', 'B1')], 'result': None}
     ]
 }
-
 knockout_matches = [
     {'id': 'VF1', 'round': 'Quarterfinal', 'teams': [None, None], 'result': None, 'description': '18:15 VF 1'},
     {'id': 'VF2', 'round': 'Quarterfinal', 'teams': [None, None], 'result': None, 'description': '18:15 VF 2'},
@@ -102,6 +113,9 @@ def reset_all_player_stats():
         player['scored_goals'] = 0
         player['conceded_goals'] = 0
         player['points'] = 0
+        player['wins'] = 0
+        player['draws'] = 0
+        player['losses'] = 0
 
 
 def calculate_statistics():
@@ -112,8 +126,25 @@ def calculate_statistics():
             except Exception:
                 continue
             team1, team2 = match['players']
+            # Update stats for team1 and team2
             update_player_stats(team1, goals_team1, goals_team2)
             update_player_stats(team2, goals_team2, goals_team1)
+            # Now increment wins/draws/losses
+            if goals_team1 > goals_team2:
+                for player_name in team1:
+                    tournament_data['players'][player_name]['wins'] += 1
+                for player_name in team2:
+                    tournament_data['players'][player_name]['losses'] += 1
+            elif goals_team1 < goals_team2:
+                for player_name in team2:
+                    tournament_data['players'][player_name]['wins'] += 1
+                for player_name in team1:
+                    tournament_data['players'][player_name]['losses'] += 1
+            else:
+                for player_name in team1:
+                    tournament_data['players'][player_name]['draws'] += 1
+                for player_name in team2:
+                    tournament_data['players'][player_name]['draws'] += 1
 
 
 def update_player_stats(team, goals_for, goals_against):
@@ -254,10 +285,8 @@ class VerticalScrolledFrame(tk.Frame):
 root = tk.Tk()
 root.title("Tournament Schedule")
 root.geometry("1100x950")
-
 top_frame = ttk.Frame(root)
 top_frame.pack(fill="x", padx=10, pady=5)
-
 # --- Filename entry for save/load ---
 filename_var = tk.StringVar(value="tournament_save.json")
 filename_entry = tk.Entry(top_frame, textvariable=filename_var, width=30)
@@ -266,7 +295,6 @@ save_btn = tk.Button(top_frame, text="Save Tournament", command=lambda: save_tou
 save_btn.pack(side="left", padx=10)
 load_btn = tk.Button(top_frame, text="Load Tournament", command=lambda: load_tournament(filename_var.get()))
 load_btn.pack(side="left", padx=10)
-
 name_frame = ttk.LabelFrame(top_frame, text="Set Player Display Name")
 name_frame.pack(fill="x", padx=10, pady=5)
 player_id_entry = tk.Entry(name_frame, width=20)
@@ -277,7 +305,6 @@ set_name_button = tk.Button(
     name_frame, text="Set Name",
     command=lambda: set_display_name(player_id_entry.get(), new_name_entry.get()))
 set_name_button.pack(side='left', padx=10)
-
 rankings_row_frame = ttk.Frame(root)
 rankings_row_frame.pack(fill="x", padx=10, pady=5)
 rankings_frames = {}
@@ -300,7 +327,7 @@ for i, match in enumerate(tournament_data['matches']):
     team2_players = ", ".join(tournament_data['players'][p]['display_name'] for p in match['players'][1])
     # --- Show result in match label ---
     result_str = match['result'] if match['result'] else "-"
-    label_text = f"Match {match['id']} - {team1_players} vs {team2_players}   Result: {result_str}"
+    label_text = f"Match {match['id']} - {team1_players} vs {team2_players}   Results: {result_str}"
     frame = ttk.LabelFrame(main_frame, text=label_text)
     match_label = ttk.Label(frame, text=label_text)
     match_label.pack()
@@ -333,25 +360,31 @@ def display_rankings():
             ),
             reverse=True
         )
+        header = ['#', 'Name', 'S U N', 'Tore', 'Diff', 'Punkte']
+        for col, text in enumerate(header):
+            tk.Label(frame, text=text, font=('Arial', 10, 'bold')).grid(row=0, column=col, sticky='w')
+
         for idx, (player, info) in enumerate(sorted_players, 1):
             tordiff = info['scored_goals'] - info['conceded_goals']
-            tk.Label(frame,
-                     text=f"{idx}. {info['display_name']}  {info['scored_goals']}:{info['conceded_goals']}  "
-                          f"Points: {info['points']}  Tordiff: {tordiff}").pack(anchor="w")
+            tordiff_str = f"{tordiff:+d}"
+            tk.Label(frame, text=str(idx)).grid(row=idx, column=0, sticky='w')
+            tk.Label(frame, text=info['display_name']).grid(row=idx, column=1, sticky='w')
+            tk.Label(frame, text=f"{info['wins']} {info['draws']} {info['losses']}").grid(row=idx, column=2, sticky='w')
+            tk.Label(frame, text=f"{info['scored_goals']}:{info['conceded_goals']}").grid(row=idx, column=3, sticky='w')
+            tk.Label(frame, text=tordiff_str).grid(row=idx, column=4, sticky='w')
+            tk.Label(frame, text=str(info['points'])).grid(row=idx, column=5, sticky='w')  # Points aligned left
 
 
 def display_knockout_stage():
     for widget in knockout_main_frame.winfo_children():
         widget.destroy()
     knockout_match_frames.clear()
-
     # First row: Quarterfinals (VF1, VF2) and Semifinals (HF1, HF2)
     first_row_matches = [knockout_matches[0], knockout_matches[1], knockout_matches[2], knockout_matches[3]]
     # Second row: Platz 5+6, Platz 3+4, Finale
     second_row_matches = [knockout_matches[4], knockout_matches[5], knockout_matches[6]]
 
     rows = [first_row_matches, second_row_matches]
-
     for row_index, matches_in_row in enumerate(rows):
         for col_index, match in enumerate(matches_in_row):
             team1 = match['teams'][0]
