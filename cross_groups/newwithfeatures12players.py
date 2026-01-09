@@ -31,34 +31,34 @@ tournament_data = {
                'draws': 0, 'losses': 0},
     },
     'matches': [
-        {'id': 1, 'players': [('A1', 'B1'), ('A2', 'B2')], 'result': None},
-        {'id': 2, 'players': [('C1', 'D1'), ('C2', 'D2')], 'result': None},
-        {'id': 3, 'players': [('A3', 'B3'), ('A1', 'B2')], 'result': None},
-        {'id': 4, 'players': [('C3', 'D3'), ('C1', 'D2')], 'result': None},
-        {'id': 5, 'players': [('A2', 'B3'), ('A3', 'B1')], 'result': None},
-        {'id': 6, 'players': [('C2', 'D3'), ('C3', 'D1')], 'result': None},
-        {'id': 7, 'players': [('A1', 'D1'), ('A2', 'D2')], 'result': None},
-        {'id': 8, 'players': [('C1', 'B1'), ('C2', 'B2')], 'result': None},
-        {'id': 9, 'players': [('A3', 'D3'), ('A1', 'D2')], 'result': None},
-        {'id': 10, 'players': [('C3', 'B3'), ('C1', 'B2')], 'result': None},
-        {'id': 11, 'players': [('A2', 'D3'), ('A3', 'D1')], 'result': None},
-        {'id': 12, 'players': [('C2', 'B3'), ('C3', 'B1')], 'result': None},
-        {'id': 13, 'players': [('A1', 'C1'), ('A2', 'C2')], 'result': None},
-        {'id': 14, 'players': [('D1', 'B1'), ('D2', 'B2')], 'result': None},
-        {'id': 15, 'players': [('A3', 'C3'), ('A1', 'C2')], 'result': None},
-        {'id': 16, 'players': [('D3', 'B3'), ('D1', 'B2')], 'result': None},
-        {'id': 17, 'players': [('A2', 'C3'), ('A3', 'C1')], 'result': None},
-        {'id': 18, 'players': [('D2', 'B3'), ('D3', 'B1')], 'result': None}
-    ]
+    {'id': 1, 'players': [('A1', 'B1'), ('A2', 'B2')], 'result': None, 'description': '16:00'},
+    {'id': 2, 'players': [('C1', 'D1'), ('C2', 'D2')], 'result': None, 'description': '16:00'},
+    {'id': 3, 'players': [('A3', 'B3'), ('A1', 'B2')], 'result': None, 'description': '16:15'},
+    {'id': 4, 'players': [('C3', 'D3'), ('C1', 'D2')], 'result': None, 'description': '16:15'},
+    {'id': 5, 'players': [('A2', 'B3'), ('A3', 'B1')], 'result': None, 'description': '16:30'},
+    {'id': 6, 'players': [('C2', 'D3'), ('C3', 'D1')], 'result': None, 'description': '16:30'},
+    {'id': 7, 'players': [('A1', 'D1'), ('A2', 'D2')], 'result': None, 'description': '16:45'},
+    {'id': 8, 'players': [('C1', 'B1'), ('C2', 'B2')], 'result': None, 'description': '16:45'},
+    {'id': 9, 'players': [('A3', 'D3'), ('A1', 'D2')], 'result': None, 'description': '17:00'},
+    {'id': 10, 'players': [('C3', 'B3'), ('C1', 'B2')], 'result': None, 'description': '17:00'},
+    {'id': 11, 'players': [('A2', 'D3'), ('A3', 'D1')], 'result': None, 'description': '17:15'},
+    {'id': 12, 'players': [('C2', 'B3'), ('C3', 'B1')], 'result': None, 'description': '17:15'},
+    {'id': 13, 'players': [('A1', 'C1'), ('A2', 'C2')], 'result': None, 'description': '17:30'},
+    {'id': 14, 'players': [('D1', 'B1'), ('D2', 'B2')], 'result': None, 'description': '17:30'},
+    {'id': 15, 'players': [('A3', 'C3'), ('A1', 'C2')], 'result': None, 'description': '17:45'},
+    {'id': 16, 'players': [('D3', 'B3'), ('D1', 'B2')], 'result': None, 'description': '17:45'},
+    {'id': 17, 'players': [('A2', 'C3'), ('A3', 'C1')], 'result': None, 'description': '18:00'},
+    {'id': 18, 'players': [('D2', 'B3'), ('D3', 'B1')], 'result': None, 'description': '18:00'},
+]
 }
 knockout_matches = [
-    {'id': 'VF1', 'round': 'Quarterfinal', 'teams': [None, None], 'result': None, 'description': '18:15 VF 1'},
-    {'id': 'VF2', 'round': 'Quarterfinal', 'teams': [None, None], 'result': None, 'description': '18:15 VF 2'},
-    {'id': 'HF1', 'round': 'Semifinal', 'teams': [None, None], 'result': None, 'description': '18:30 HF 1'},
-    {'id': 'HF2', 'round': 'Semifinal', 'teams': [None, None], 'result': None, 'description': '18:30 HF 2'},
-    {'id': 'P56', 'round': '5th/6th Place', 'teams': [None, None], 'result': None, 'description': '18:45 Platz 5+6'},
-    {'id': 'P34', 'round': '3rd/4th Place', 'teams': [None, None], 'result': None, 'description': '18:45 Platz 3+4'},
-    {'id': 'Final', 'round': 'Final', 'teams': [None, None], 'result': None, 'description': '19:00 Finale'},
+    {'id': 'VF1', 'round': 'Viertelfinale 1', 'teams': [None, None], 'result': None, 'description': '18:15'},
+    {'id': 'VF2', 'round': 'Viertelfinale 2', 'teams': [None, None], 'result': None, 'description': '18:15'},
+    {'id': 'HF1', 'round': 'Halbfinale 1', 'teams': [None, None], 'result': None, 'description': '18:30'},
+    {'id': 'HF2', 'round': 'Halbfinale 2', 'teams': [None, None], 'result': None, 'description': '18:30'},
+    {'id': 'P56', 'round': 'Spiel um Platz 5 + 6', 'teams': [None, None], 'result': None, 'description': '18:45'},
+    {'id': 'P34', 'round': 'Spiel um Platz 5 + 6', 'teams': [None, None], 'result': None, 'description': '18:45'},
+    {'id': 'Final', 'round': 'Finale', 'teams': [None, None], 'result': None, 'description': '19:00'},
 ]
 
 
@@ -333,7 +333,7 @@ for i, match in enumerate(tournament_data['matches']):
     match_label.pack()
     result_entry = tk.Entry(frame)
     result_entry.pack()
-    submit_button = tk.Button(frame, text="Enter Result",
+    submit_button = tk.Button(frame, text="Ergebnis speichern",
                               command=lambda m_id=match['id'], entry=result_entry: update_match_result(m_id,
                                                                                                        entry.get()))
     submit_button.pack()
@@ -403,12 +403,12 @@ def display_knockout_stage():
             team2_str = fmt(team2)
             result_str = match['result'] if match['result'] else "-"
             label_text = f"{team1_str} vs {team2_str}   Result: {result_str}"
-            frame = ttk.LabelFrame(knockout_main_frame, text=f"{match['description']} ({match['round']})")
+            frame = ttk.LabelFrame(knockout_main_frame, text=f"{match['description']} {match['round']}")
             label = ttk.Label(frame, text=label_text)
             label.pack()
             result_entry = tk.Entry(frame)
             result_entry.pack()
-            submit_button = tk.Button(frame, text="Enter Result",
+            submit_button = tk.Button(frame, text="Ergebnis speichern",
                                       command=lambda m_id=match['id'], entry=result_entry: update_match_result(m_id,
                                                                                                                entry.get()))
             submit_button.pack()
@@ -427,9 +427,10 @@ def refresh_gui():
             team1_players = ", ".join(tournament_data['players'][p]['display_name'] for p in match['players'][0])
             team2_players = ", ".join(tournament_data['players'][p]['display_name'] for p in match['players'][1])
             result_str = match['result'] if match['result'] else "-"
-            label_text = f"Match {match['id']} - {team1_players} vs {team2_players}   Result: {result_str}"
+            box_text = f"Spiel {match['id']} {match['description']} Uhr"
+            label_text = f"Spiel {match['id']} - {team1_players} vs {team2_players}   Ergebnis: {result_str}"
             match_frame['label'].config(text=label_text)
-            match_frame['frame'].configure(text=label_text)
+            match_frame['frame'].configure(text=box_text)
             match_frame['frame'].grid(row=row, column=column, padx=10, pady=5, sticky="ew")
     update_knockout_stage()
     display_knockout_stage()
